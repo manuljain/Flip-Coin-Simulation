@@ -7,7 +7,7 @@ echo "Welcome to Flip Coin Simulation Program."
 counth=0
 countt=0
 
-for (( i=0; i<21; i++ ))
+while true
 do
     # Flipping a coin
     coin=$((RANDOM%2))
@@ -18,8 +18,20 @@ do
     else
         countt=$(($countt+1))
     fi
+    if [[ $counth -eq 21 ]]
+    then
+	    echo "Head counts : $counth   Tail count : $countt"
+        count=$(($counth-$countt))
+        echo "Head won by $count"
+        break
+    elif [[ $countt -eq 21 ]]
+    then
+	    echo "Head counts : $counth   Tail count : $countt"
+        count=$(($countt-$counth))
+        echo "Tail won by $count"
+        break
+    else 
+        continue
+    fi
 done
 
-# display win count
-echo "Head won $counth times"
-echo "Tail won $countt times"
